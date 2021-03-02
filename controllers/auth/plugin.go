@@ -40,7 +40,6 @@ func (s *Session) Login(c *AuthController) bool {
 		name := c.GetString("name")
 		password := c.GetString("password")
 		fmt.Println(name, password)
-		return false
 	}
 
 	c.TplName = "auth/login.html"
