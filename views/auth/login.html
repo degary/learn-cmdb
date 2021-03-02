@@ -21,14 +21,15 @@
     </div>
     <div class="login-box">
         <form class="login-form" action="{{ urlfor `AuthController.Login` }}" method="post">
+            <input type="hidden" name="_xsrf" value="{{ .xsrf_token }}" />
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>登录</h3>
             <div class="form-group">
                 <label class="control-label">用户名</label>
-                <input class="form-control" type="text" placeholder="用户名" autofocus>
+                <input class="form-control" type="text" name="name" placeholder="用户名" autofocus>
             </div>
             <div class="form-group">
                 <label class="control-label">密码</label>
-                <input class="form-control" type="password" placeholder="密码">
+                <input class="form-control" type="password" name="password" placeholder="密码">
             </div>
             <div class="form-group btn-container">
                 <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>登录</button>
