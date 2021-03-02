@@ -1,0 +1,32 @@
+package models
+
+import (
+	"github.com/astaxie/beego/orm"
+	"github.com/degary/learn-cmdb/utils"
+	"time"
+)
+
+type User struct {
+	Id          int        `orm:"column(id);" json:"id"`
+	Name        string     `orm:"column(name);size(32)" json:"name"`
+	Password    string     `orm:"column(password);size(1024);" json:"password"`
+	Gender      int        `orm:"column(gender);default(0)" json:"gender"`
+	Tel         string     `orm:"column(tel);size(1024)" json:"tel"`
+	Birthday    *time.Time `orm:"column(birthday);null;default(null)" json:"birthday"`
+	Email       string     `orm:"column(email);size(1024);default(null)" json:"email"`
+	Addr        string     `orm:"column(addr);size(1024);default(null)" json:"addr"`
+	Remark      string     `orm:"column(remark);size(1024);default(null)" json:"remark"`
+	IsSuperuser bool       `orm:"column(is_superuser);default(false)" json:"is_superuser"`
+	Status      int        `orm:"column(status);" json:"status"`
+	CreatedTime *time.Time `orm:"column(created_time);auto_now_add;" json:"created_time"`
+	UpdatedTime *time.Time `orm:"column(updated_time);auto_now" json:"updated_time"`
+	DeletedTime *time.Time `orm:"column(deleted_time);null;default(null)" json:"deleted_time"`
+}
+
+func (u *User) SetPassword(password string) {
+	u.Password = utils.Md5Salt(password, "")
+}
+
+func init() {
+	orm.RegisterModel(new(User))
+}

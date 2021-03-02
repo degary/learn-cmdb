@@ -1,0 +1,43 @@
+2021/03/02 10:12:07.160 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:12:07.165 [E] [proc.go:225]  DataBase of alias name `default` not found
+2021/03/02 10:12:07.205 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:14:09.849 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:14:09.855 [E] [proc.go:225]  DataBase of alias name `default` not found
+2021/03/02 10:14:09.894 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:19:08.623 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:19:08.628 [E] [proc.go:225]  DataBase of alias name `default` not found
+2021/03/02 10:19:08.668 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:19:54.197 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:19:54.241 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:25:38.877 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:25:38.925 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:27:27.535 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:27:27.539 [E] [proc.go:225]  DataBase of alias name `default` not found
+2021/03/02 10:39:50.557 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:39:50.605 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:40:05.860 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:40:05.907 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:47:22.970 [D] [proc.go:225]  this is a debug log
+2021/03/02 10:47:23.018 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 10:47:35.777 [D] [proc.go:225]  this is a debug log
+2021/03/02 13:20:58.441 [D] [proc.go:225]  this is a debug log
+2021/03/02 13:20:58.548 [I] [proc.go:225]  初始化数据库
+2021/03/02 13:20:58.551 [I] [proc.go:225]  初始化admin成功,默认密码: OVS2HCAu:84896599cfcd1d38d7541339bd9c1cb4
+2021/03/02 13:24:21.863 [D] [proc.go:225]  this is a debug log
+2021/03/02 13:24:21.893 [I] [proc.go:225]  初始化数据库
+2021/03/02 13:24:21.896 [I] [proc.go:225]  初始化admin成功,默认密码: 3OByc2tg
+2021/03/02 13:25:51.581 [D] [proc.go:225]  this is a debug log
+2021/03/02 13:25:51.589 [I] [proc.go:225]  初始化数据库
+2021/03/02 13:25:51.590 [I] [proc.go:225]  admin用户已存在
+2021/03/02 13:26:00.918 [D] [proc.go:225]  this is a debug log
+2021/03/02 13:26:00.956 [I] [proc.go:225]  初始化数据库
+2021/03/02 13:26:00.958 [I] [proc.go:225]  初始化admin成功,默认密码: jHJb4mt9
+2021/03/02 16:33:47.034 [D] [proc.go:225]  this is a debug log
+2021/03/02 16:33:47.083 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 16:34:08.479 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|     1.1184ms| nomatch|[44m GET     [0m /  
+2021/03/02 16:34:08.542 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      499.3µs| nomatch|[44m GET     [0m /favicon.ico
+2021/03/02 16:35:38.826 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|        879µs|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/03/02 16:39:46.230 [D] [proc.go:225]  this is a debug log
+2021/03/02 16:39:46.278 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/03/02 16:39:57.867 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     1.1673ms|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/03/02 16:40:10.697 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|      828.9µs|   match|[44m GET     [0m /auth/login   r:/auth/login/*
