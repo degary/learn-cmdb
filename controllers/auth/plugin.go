@@ -1,9 +1,9 @@
 package auth
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/validation"
-	"github.com/degary/learn-cmdb/forms"
+	"github.com/astaxie/beego/orm"
 	"github.com/degary/learn-cmdb/models"
 	"net/http"
 )
@@ -22,7 +22,11 @@ func (s *Session) Name() string {
 func (s *Session) IsLogin(c *LoginRequiredController) *models.User {
 	if session := c.GetSession("user"); session != nil {
 		if uid, ok := session.(int); ok {
-			return models.DefaultUserManager.GetByID(uid)
+			user := &models.User{Id: uid}
+			ormer := orm.NewOrm()
+			if err := ormer.Read(user); err == nil {
+				return user
+			}
 		}
 	}
 	return nil
@@ -31,26 +35,15 @@ func (s *Session) GoToLoginPage(c *LoginRequiredController) {
 	c.Redirect("/auth/login", http.StatusFound)
 }
 func (s *Session) Login(c *AuthController) bool {
-	form := &forms.LoginForm{}
-	valid := &validation.Validation{}
 	if c.Ctx.Input.IsPost() {
 		//表单验证
-		if err := c.ParseForm(form); err != nil {
-			valid.SetError("error", err.Error())
-		} else {
-			if ok, err := valid.Valid(form); err != nil {
-				valid.SetError("error", err.Error())
-			} else if ok {
-				c.SetSession("user", form.User.Id)
-				c.Redirect("/test/test", http.StatusFound)
-				return true
-			}
-		}
+		name := c.GetString("name")
+		password := c.GetString("password")
+		fmt.Println(name, password)
+		return false
 	}
 
 	c.TplName = "auth/login.html"
-	c.Data["form"] = form
-	c.Data["valid"] = valid
 	return false
 }
 func (s *Session) Logout(c *AuthController) {
