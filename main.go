@@ -39,6 +39,8 @@ func main() {
 
 	if !*verbose {
 		logs.GetBeeLogger().DelLogger("console")
+	} else {
+		orm.Debug = true
 	}
 
 	//初始化orm

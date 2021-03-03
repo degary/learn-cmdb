@@ -7,4 +7,5 @@ type TestController struct {
 }
 
 func (c *TestController) Test() {
+	c.TplName = "test/test.html"
 }

@@ -1,7 +1,6 @@
 package base
 
 import (
-	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -10,6 +9,5 @@ type BaseController struct {
 }
 
 func (c *BaseController) Prepare() {
-	fmt.Println("xsrf")
 	c.Data["xsrf_token"] = c.XSRFToken()
 }

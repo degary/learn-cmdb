@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/orm"
 	"github.com/degary/learn-cmdb/utils"
 	"time"
@@ -26,6 +27,44 @@ type User struct {
 func (u *User) SetPassword(password string) {
 	u.Password = utils.Md5Salt(password, "")
 }
+
+//判断密码是否正确
+func (u *User) ValidatePassword(password string) bool {
+	salt, _ := utils.SplitMd5Salt(u.Password)
+	return utils.Md5Salt(password, salt) == u.Password
+}
+
+//判断用户是否被锁住,锁住返回true
+func (u *User) IsLocked() bool {
+	return u.Status == StatusLock
+}
+
+type UserManager struct{}
+
+func NewUserManager() *UserManager {
+	return &UserManager{}
+}
+
+func (c *UserManager) GetByID(id int) *User {
+	user := &User{}
+	if err := orm.NewOrm().QueryTable(user).Filter("id__exact", id).Filter("DeletedTime__isnull", true).One(user); err == nil {
+		return user
+	}
+	return nil
+}
+
+func (c *UserManager) GetByName(name string) *User {
+	user := &User{}
+	if err := orm.NewOrm().QueryTable(user).Filter("name__exact", name).Filter("DeletedTime__isnull", true).One(user); err == nil {
+		return user
+	} else {
+		fmt.Println(err)
+		return nil
+	}
+
+}
+
+var DefaultUserManager = NewUserManager()
 
 func init() {
 	orm.RegisterModel(new(User))
