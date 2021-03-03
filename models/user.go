@@ -22,6 +22,8 @@ type User struct {
 	CreatedTime *time.Time `orm:"column(created_time);auto_now_add;" json:"created_time"`
 	UpdatedTime *time.Time `orm:"column(updated_time);auto_now" json:"updated_time"`
 	DeletedTime *time.Time `orm:"column(deleted_time);null;default(null)" json:"deleted_time"`
+	//token和user是一对一的关系
+	Token *Token `orm:"reverse(one)"`
 }
 
 func (u *User) SetPassword(password string) {
@@ -64,8 +66,35 @@ func (c *UserManager) GetByName(name string) *User {
 
 }
 
+type Token struct {
+	Id          int        `orm:"column(id)"`
+	User        *User      `orm:"column(user);rel(one)"`
+	AccessKey   string     `orm:"column(access_key);size(1024)"`
+	SecretKey   string     `orm:"column(secret_key);size(1024)"`
+	CreatedTime *time.Time `orm:"column(created_time);auto_now_add;" json:"created_time"`
+	UpdatedTime *time.Time `orm:"column(updated_time);auto_now" json:"updated_time"`
+}
+
+type TokenManager struct{}
+
+func NewTokenManager() *TokenManager {
+	return &TokenManager{}
+}
+
+func (t *TokenManager) GetByKey(accesskey, secretkey string) *Token {
+	token := &Token{AccessKey: accesskey, SecretKey: secretkey}
+	ormer := orm.NewOrm()
+	if err := ormer.Read(token, "accesskey", "secretkey"); err == nil {
+		ormer.LoadRelated(token, "User")
+		return token
+	}
+	return nil
+}
+
 var DefaultUserManager = NewUserManager()
+var DefaultTokenManager = NewTokenManager()
 
 func init() {
 	orm.RegisterModel(new(User))
+	orm.RegisterModel(new(Token))
 }

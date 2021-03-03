@@ -7,6 +7,7 @@ import (
 	"github.com/degary/learn-cmdb/forms"
 	"github.com/degary/learn-cmdb/models"
 	"net/http"
+	"strings"
 )
 
 type Session struct {
@@ -59,9 +60,53 @@ func (s *Session) Logout(c *AuthController) {
 	c.Redirect("/auth/login", http.StatusFound)
 }
 
-type Token struct {
+//token
+type Token struct{}
+
+func (t *Token) Is(ctx *context.Context) bool {
+	//如果在请求头里,没有Authentication,则认为使用的是session
+	return strings.ToLower(strings.TrimSpace(ctx.Input.Header("Authentication"))) == "token"
+}
+func (t *Token) Name() string {
+	return "token"
+}
+
+func (t *Token) IsLogin(c *LoginRequiredController) *models.User {
+	accesskey := strings.TrimSpace(c.Ctx.Input.Header("AccessKey"))
+	secretkey := strings.TrimSpace(c.Ctx.Input.Header("SecretKey"))
+
+	if token := models.DefaultTokenManager.GetByKey(accesskey, secretkey); token != nil && token.User.DeletedTime == nil {
+		return token.User
+	}
+	return nil
+}
+func (t *Token) GoToLoginPage(c *LoginRequiredController) {
+	c.Data["json"] = map[string]interface{}{
+		"code":   403,
+		"text":   "Please use a currect token",
+		"result": nil,
+	}
+	c.ServeJSON()
+}
+func (t *Token) Login(c *AuthController) bool {
+	c.Data["json"] = map[string]interface{}{
+		"code":   403,
+		"text":   "请使用token请求API",
+		"result": nil,
+	}
+	c.ServeJSON()
+	return false
+}
+func (t *Token) Logout(c *AuthController) {
+	c.Data["json"] = map[string]interface{}{
+		"code":   200,
+		"text":   "退出登录成功",
+		"result": nil,
+	}
+	c.ServeJSON()
 }
 
 func init() {
 	DefaultManager.Register(new(Session))
+	DefaultManager.Register(new(Token))
 }
