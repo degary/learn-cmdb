@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/validation"
 	"github.com/degary/learn-cmdb/forms"
@@ -28,7 +29,7 @@ func (s *Session) IsLogin(c *LoginRequiredController) *models.User {
 	return nil
 }
 func (s *Session) GoToLoginPage(c *LoginRequiredController) {
-	c.Redirect("/auth/login", http.StatusFound)
+	c.Redirect(beego.URLFor(beego.AppConfig.String("login")), http.StatusFound)
 }
 func (s *Session) Login(c *AuthController) bool {
 	form := &forms.LoginForm{}
@@ -42,7 +43,7 @@ func (s *Session) Login(c *AuthController) bool {
 				valid.SetError("error", err.Error())
 			} else if ok {
 				c.SetSession("user", form.User.Id)
-				c.Redirect("/test/test", http.StatusFound)
+				c.Redirect(beego.URLFor(beego.AppConfig.String("home")), http.StatusFound)
 				return true
 			}
 		}
