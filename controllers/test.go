@@ -5,6 +5,14 @@ import (
 	"time"
 )
 
+type TestPageController struct {
+	LayoutController
+}
+
+func (c *TestPageController) Index() {
+	c.TplName = "test_page/index.html"
+}
+
 type TestController struct {
 	auth.LoginRequiredController
 }

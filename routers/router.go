@@ -9,5 +9,6 @@ import (
 func init() {
 	beego.AutoRouter(&auth.AuthController{})
 	beego.AutoRouter(&controllers.TestController{})
+	beego.AutoRouter(&controllers.TestPageController{})
 
 }
