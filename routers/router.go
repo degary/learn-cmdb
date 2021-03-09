@@ -8,7 +8,7 @@ import (
 
 func init() {
 	beego.AutoRouter(&auth.AuthController{})
-	beego.AutoRouter(&controllers.TestController{})
-	beego.AutoRouter(&controllers.TestPageController{})
+	beego.AutoRouter(&controllers.UserPageController{})
+	beego.AutoRouter(&controllers.UserController{})
 
 }

@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    jQuery(document).on("click",".btn-open-dialog",function () {
+        var title = jQuery(this).data('title');
+        var url = jQuery(this).data("url");
+
+        jQuery(".dialog-content").load(url,function (response){
+            var dialog = jQuery(".dialog");
+            dialog.find(".dialog-title").text(title);
+            dialog.modal({
+                show:true,
+                backdrop: 'static',
+                keyboard: false,
+            })
+        });
+    });
+</script>

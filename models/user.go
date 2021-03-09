@@ -10,7 +10,7 @@ import (
 type User struct {
 	Id          int        `orm:"column(id);" json:"id"`
 	Name        string     `orm:"column(name);size(32)" json:"name"`
-	Password    string     `orm:"column(password);size(1024);" json:"password"`
+	Password    string     `orm:"column(password);size(1024);" json:"-"`
 	Gender      int        `orm:"column(gender);default(0)" json:"gender"`
 	Tel         string     `orm:"column(tel);size(1024)" json:"tel"`
 	Birthday    *time.Time `orm:"column(birthday);null;default(null)" json:"birthday"`
@@ -23,7 +23,7 @@ type User struct {
 	UpdatedTime *time.Time `orm:"column(updated_time);auto_now" json:"updated_time"`
 	DeletedTime *time.Time `orm:"column(deleted_time);null;default(null)" json:"deleted_time"`
 	//token和user是一对一的关系
-	Token *Token `orm:"reverse(one)"`
+	Token *Token `orm:"reverse(one)" json:"-"`
 }
 
 func (u *User) SetPassword(password string) {
@@ -63,6 +63,32 @@ func (c *UserManager) GetByName(name string) *User {
 		fmt.Println(err)
 		return nil
 	}
+}
+
+func (c *UserManager) Query(q string, start int64, length int) ([]*User, int64, int64) {
+	ormer := orm.NewOrm()
+	queryset := ormer.QueryTable(&User{})
+	condition := orm.NewCondition()
+
+	//设置条件==> deleted_time 为空(此用户没有被删除)
+	condition = condition.And("deleted_time__isnull", true)
+
+	total, _ := queryset.SetCond(condition).Count()
+
+	qtotal := total
+	if q != "" {
+		query := orm.NewCondition()
+		query = query.Or("name__icontains", q)
+		query = query.Or("tel__icontains", q)
+		query = query.Or("addr__icontains", q)
+		query = query.Or("email__icontains", q)
+		query = query.Or("remark__icontains", q)
+		condition = condition.AndCond(query)
+		qtotal, _ = queryset.SetCond(condition).Count()
+	}
+	var users []*User
+	queryset.SetCond(condition).Limit(length).Offset(start).All(&users)
+	return users, total, qtotal
 
 }
 
