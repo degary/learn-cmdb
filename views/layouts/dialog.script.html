@@ -12,5 +12,24 @@
                 keyboard: false,
             })
         });
+
+        jQuery(".btn-dialog-commit").on("click",function (){
+            var dialog = jQuery(".dialog")
+            var form = dialog.find("form");
+            var url = form.data("url")
+            var callback = form.data("callback")
+
+
+
+            //form提交的的数据
+            //console.log(url,form.serializeArray())
+            //ajaxRequest 为js/utils.js下定义的函数
+            ajaxRequest("POST",url,form.serializeArray(),function (response){
+                if(callback && callback in window && typeof(window[callback] == "function")){
+                    window[callback](response);
+                }
+            });
+
+        });
     });
 </script>

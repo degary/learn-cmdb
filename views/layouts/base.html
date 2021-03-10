@@ -6,6 +6,12 @@
     {{ assets_css "/static/css/main.css" }}
     {{ assets_css "/static/plugins/Font-Awesome-4.7.0/css/font-awesome.min.css" }}
     {{ .LayoutStyle }}
+    <style type="text/css">
+        div.dialog-content {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->
@@ -67,6 +73,8 @@
     {{ assets_js "/static/js/plugins/chart.js" }}
     {{ assets_js "/static/js/plugins/dataTables.bootstrap.min.js" }}
     {{ assets_js "/static/js/plugins/jquery.dataTables.min.js" }}
+    {{ assets_js "/static/js/jquery.base64.js" }}
+    {{ assets_js "/static/js/jquery.cookie-1.4.1.min.js" }}
     {{ assets_js "/static/js/utils.js" }}
     <script type="text/javascript">
         //设置datatable默认参数(国际化及不排序)

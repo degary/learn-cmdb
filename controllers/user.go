@@ -42,7 +42,12 @@ func (c *UserController) List() {
 
 func (c *UserController) Create() {
 	if c.Ctx.Input.IsPost() {
-
+		c.Data["json"] = map[string]interface{}{
+			"code":   200,
+			"text":   "创建成功",
+			"result": nil,
+		}
+		c.ServeJSON()
 	} else {
 		c.TplName = "user/create.html"
 	}
