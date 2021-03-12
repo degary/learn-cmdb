@@ -2,10 +2,17 @@
     jQuery(document).on("click",".btn-open-dialog",function () {
         var title = jQuery(this).data('title');
         var url = jQuery(this).data("url");
+        var look = jQuery(this).data("look") == "look";
 
         jQuery(".dialog-content").load(url,function (response){
             var dialog = jQuery(".dialog");
             dialog.find(".dialog-title").text(title);
+            //如果在按钮中 添加了 data-look="look",则隐藏 commit按钮
+            if(look) {
+                dialog.find(".btn-dialog-commit").hide()
+            }else {
+                dialog.find(".btn-dialog-commit").show()
+            }
             dialog.modal({
                 show:true,
                 backdrop: 'static',
@@ -25,6 +32,7 @@
             //console.log(url,form.serializeArray())
             //ajaxRequest 为js/utils.js下定义的函数
             ajaxRequest("POST",url,form.serializeArray(),function (response){
+                dialog.modal("hide")
                 if(callback && callback in window && typeof(window[callback] == "function")){
                     window[callback](response);
                 }

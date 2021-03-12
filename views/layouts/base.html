@@ -76,6 +76,8 @@
     {{ assets_js "/static/js/jquery.base64.js" }}
     {{ assets_js "/static/js/jquery.cookie-1.4.1.min.js" }}
     {{ assets_js "/static/js/utils.js" }}
+    {{ assets_js "/static/plugins/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js"}}
+    {{ assets_js "/static/plugins/bootstrap-datepicker-1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"}}
     <script type="text/javascript">
         //设置datatable默认参数(国际化及不排序)
         jQuery(document).ready(function (){
@@ -85,9 +87,16 @@
                 },
                 ordering: false, //不排序
             });
+            jQuery(document).on("focus","input[datepicker]",function (){
+                if(jQuery(this).attr("initd")) {
+                    return;
+                }
+                jQuery(this).attr("initd","initd").datepicker({language: "zh-CN"});
+            });
         });
     </script>
     {{  template "layouts/dialog.script.html" . }}
+    {{  template "layouts/control.script.html" . }}
     {{ .LayoutScript }}
 </body>
 </html>

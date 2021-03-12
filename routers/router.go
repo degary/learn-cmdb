@@ -10,5 +10,6 @@ func init() {
 	beego.AutoRouter(&auth.AuthController{})
 	beego.AutoRouter(&controllers.UserPageController{})
 	beego.AutoRouter(&controllers.UserController{})
+	beego.AutoRouter(&controllers.TokenController{})
 
 }

@@ -8,17 +8,17 @@ import (
 )
 
 type User struct {
-	Id          int        `orm:"column(id);" json:"id"`
-	Name        string     `orm:"column(name);size(32)" json:"name"`
+	Id          int        `orm:"column(id);" json:"id" form:"id"`
+	Name        string     `orm:"column(name);size(32)" json:"name" form:"name"`
 	Password    string     `orm:"column(password);size(1024);" json:"-"`
-	Gender      int        `orm:"column(gender);default(0)" json:"gender"`
-	Tel         string     `orm:"column(tel);size(1024)" json:"tel"`
-	Birthday    *time.Time `orm:"column(birthday);null;default(null)" json:"birthday"`
-	Email       string     `orm:"column(email);size(1024);default(null)" json:"email"`
-	Addr        string     `orm:"column(addr);size(1024);default(null)" json:"addr"`
-	Remark      string     `orm:"column(remark);size(1024);default(null)" json:"remark"`
+	Gender      int        `orm:"column(gender);default(0)" json:"gender" form:"gender"`
+	Tel         string     `orm:"column(tel);size(1024)" json:"tel" form:"tel"`
+	Birthday    *time.Time `orm:"column(birthday);null;default(null)" json:"birthday" form:"birthday"`
+	Email       string     `orm:"column(email);size(1024);default(null)" json:"email" form:"email"`
+	Addr        string     `orm:"column(addr);size(1024);default(null)" json:"addr" form:"addr"`
+	Remark      string     `orm:"column(remark);size(1024);default(null)" json:"remark" form:"remark"`
 	IsSuperuser bool       `orm:"column(is_superuser);default(false)" json:"is_superuser"`
-	Status      int        `orm:"column(status);" json:"status"`
+	Status      int        `orm:"column(status);" json:"status" form:"status"`
 	CreatedTime *time.Time `orm:"column(created_time);auto_now_add;" json:"created_time"`
 	UpdatedTime *time.Time `orm:"column(updated_time);auto_now" json:"updated_time"`
 	DeletedTime *time.Time `orm:"column(deleted_time);null;default(null)" json:"deleted_time"`
@@ -49,9 +49,18 @@ func NewUserManager() *UserManager {
 
 func (c *UserManager) GetByID(id int) *User {
 	user := &User{}
-	if err := orm.NewOrm().QueryTable(user).Filter("id__exact", id).Filter("DeletedTime__isnull", true).One(user); err == nil {
+	ormer := orm.NewOrm()
+	if err := ormer.QueryTable(user).Filter("id__exact", id).Filter("DeletedTime__isnull", true).One(user); err == nil {
+		ormer.LoadRelated(user, "Token")
 		return user
 	}
+	return nil
+}
+
+func (c *UserManager) DeleteById(id int) error {
+	user := new(User)
+	qs := orm.NewOrm().QueryTable(user)
+	qs.Filter("id__exact", id).Update(orm.Params{"deleted_time": time.Now()})
 	return nil
 }
 
@@ -63,6 +72,12 @@ func (c *UserManager) GetByName(name string) *User {
 		fmt.Println(err)
 		return nil
 	}
+}
+
+func (c *UserManager) SetStatusById(id, status int) error {
+	user := new(User)
+	orm.NewOrm().QueryTable(user).Filter("id__exact", id).Update(orm.Params{"status": status})
+	return nil
 }
 
 func (c *UserManager) Query(q string, start int64, length int) ([]*User, int64, int64) {
@@ -115,6 +130,22 @@ func (t *TokenManager) GetByKey(accesskey, secretkey string) *Token {
 		return token
 	}
 	return nil
+}
+
+func (t *TokenManager) GenerateByUser(user *User) *Token {
+	ormer := orm.NewOrm()
+	token := &Token{User: user}
+	//如果查询无果,则插入,反之 则更新
+	if ormer.Read(token, "User") == orm.ErrNoRows {
+		token.AccessKey = utils.RandString(32)
+		token.SecretKey = utils.RandString(32)
+		ormer.Insert(token)
+	} else {
+		token.AccessKey = utils.RandString(32)
+		token.SecretKey = utils.RandString(32)
+		ormer.Update(token)
+	}
+	return token
 }
 
 var DefaultUserManager = NewUserManager()

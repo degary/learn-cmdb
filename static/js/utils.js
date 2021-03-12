@@ -28,7 +28,7 @@ function ajaxRequest(method,url,params,callback){
             switch (response["code"]) {
                 case 200:
                     callback(response);
-                    alert("成功")
+                    alert(response["text"])
                     break;
                 case 400:
                     var err = [];
