@@ -13,7 +13,7 @@ type User struct {
 	Password    string     `orm:"column(password);size(1024);" json:"-"`
 	Gender      int        `orm:"column(gender);default(0)" json:"gender" form:"gender"`
 	Tel         string     `orm:"column(tel);size(1024)" json:"tel" form:"tel"`
-	Birthday    *time.Time `orm:"column(birthday);null;default(null)" json:"birthday" form:"birthday"`
+	Birthday    *time.Time `orm:"column(birthday);type(date);null;default(null)" json:"birthday" form:"birthday"`
 	Email       string     `orm:"column(email);size(1024);default(null)" json:"email" form:"email"`
 	Addr        string     `orm:"column(addr);size(1024);default(null)" json:"addr" form:"addr"`
 	Remark      string     `orm:"column(remark);size(1024);default(null)" json:"remark" form:"remark"`

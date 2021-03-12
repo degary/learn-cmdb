@@ -32,7 +32,8 @@
                 },
                 {
                     data: function(row){
-                        return htmlEncode(row["birthday"])
+                        var t = row["birthday"].substr(0,10)
+                        return htmlEncode(t)
                     }
                 },
                 {
