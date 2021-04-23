@@ -1,0 +1,131 @@
+2021/04/22 13:23:13.415 [D] [proc.go:225]  this is a debug log
+2021/04/22 13:23:13.694 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 13:23:39.202 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.3932ms|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/04/22 13:23:47.466 [D] [server.go:2887]  |      127.0.0.1|[47m 302 [0m|     2.3686ms|   match|[46m POST    [0m /auth/login   r:/auth/login/*
+2021/04/22 13:23:47.489 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    19.2884ms|   match|[44m GET     [0m /dashboardpage/index   r:/dashboardpage/index/*
+2021/04/22 13:23:47.537 [D] [server.go:2887]  |      127.0.0.1|[47m 304 [0m|           0s|   match|[44m GET     [0m /static/plugins/echarts/echarts.min.js
+2021/04/22 13:23:50.173 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     49.351ms|   match|[44m GET     [0m /k8sdeploypage/index   r:/k8sdeploypage/index/*
+2021/04/22 13:23:50.265 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.8832ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:23:56.378 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    17.0163ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/22 13:24:15.313 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.6786ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:25:15.318 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2493ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:26:15.334 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.8243ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:27:15.322 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|      3.028ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:28:15.324 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0198ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:29:15.328 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.7545ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:30:15.332 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.5923ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:31:15.334 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     4.5769ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:32:15.339 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.3101ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:33:15.341 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0234ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:34:15.343 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.6614ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:35:15.345 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.3755ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:36:15.348 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2422ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:37:15.353 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0002ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:38:15.355 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.9959ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:39:15.358 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.1306ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:40:15.361 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2035ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:41:15.363 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.8085ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:42:15.366 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0467ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:43:15.367 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2468ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:44:15.372 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0851ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:45:15.373 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.1045ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:46:15.378 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2494ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:47:15.381 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|      3.543ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:48:15.382 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.4768ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:49:15.385 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.8322ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:50:15.387 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0648ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:51:15.389 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.9622ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:52:15.393 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2779ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:53:15.396 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.5418ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/22 13:54:13.533 [D] [proc.go:225]  this is a debug log
+2021/04/22 13:54:13.755 [I] [proc.go:225]  同步数据库
+2021/04/22 14:49:31.109 [D] [proc.go:225]  this is a debug log
+2021/04/22 14:49:31.198 [I] [proc.go:225]  同步数据库
+2021/04/22 18:06:39.711 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:06:39.805 [I] [proc.go:225]  同步数据库
+2021/04/22 18:07:33.369 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:07:33.456 [I] [proc.go:225]  同步数据库
+2021/04/22 18:07:39.890 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:07:40.016 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:09:53.228 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:09:53.372 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:10:59.954 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:11:00.087 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:13:02.828 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:13:02.962 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:15:29.759 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:15:29.904 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:18:12.755 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:18:12.842 [I] [proc.go:225]  同步数据库
+2021/04/22 18:18:41.589 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:18:41.724 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:20:17.741 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:20:17.883 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:23:46.320 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:23:46.452 [I] [proc.go:225]  同步数据库
+2021/04/22 18:24:10.362 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:24:10.486 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:26:13.308 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:26:13.453 [I] [proc.go:225]  同步数据库
+2021/04/22 18:26:18.995 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:26:19.122 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:31:39.534 [D] [proc.go:225]  this is a debug log
+2021/04/22 18:31:39.667 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/22 18:31:45.530 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.5743ms|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/04/22 18:31:51.984 [D] [server.go:2887]  |      127.0.0.1|[47m 302 [0m|     2.3667ms|   match|[46m POST    [0m /auth/login   r:/auth/login/*
+2021/04/22 18:31:52.008 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    20.0973ms|   match|[44m GET     [0m /dashboardpage/index   r:/dashboardpage/index/*
+2021/04/22 18:31:54.829 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    49.3683ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/22 18:31:54.946 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.0098ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/22 18:32:07.111 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      948.5µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/22 18:32:07.111 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      522.7µs| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/22 18:32:11.648 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    49.9074ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/22 18:32:11.725 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      576.5µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/22 18:32:11.726 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      569.7µs| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/22 18:32:11.772 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.7402ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/22 18:32:15.794 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     4.1972ms|   match|[44m GET     [0m /k8sdeploypage/list   r:/k8sdeploypage/list/*
+2021/04/23 09:08:47.018 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:08:47.238 [I] [proc.go:225]  同步数据库
+2021/04/23 09:09:40.849 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:09:40.950 [I] [proc.go:225]  同步数据库
+2021/04/23 09:09:47.627 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:09:47.920 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/23 09:12:54.230 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:12:54.360 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/23 09:14:14.357 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:14:14.485 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/23 09:14:44.961 [D] [proc.go:225]  this is a debug log
+2021/04/23 09:14:45.095 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/23 09:16:29.356 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|       2.61ms|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/04/23 09:16:35.071 [D] [server.go:2887]  |      127.0.0.1|[47m 302 [0m|     2.3413ms|   match|[46m POST    [0m /auth/login   r:/auth/login/*
+2021/04/23 09:16:35.097 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    22.0453ms|   match|[44m GET     [0m /dashboardpage/index   r:/dashboardpage/index/*
+2021/04/23 09:16:35.132 [D] [server.go:2887]  |      127.0.0.1|[47m 304 [0m|    11.3508ms|   match|[44m GET     [0m /static/js/utils.js
+2021/04/23 09:16:35.133 [D] [server.go:2887]  |      127.0.0.1|[47m 304 [0m|    12.4044ms|   match|[44m GET     [0m /static/plugins/echarts/echarts.min.js
+2021/04/23 09:16:38.197 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    49.8447ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/23 09:16:38.319 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     5.1186ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:16:41.083 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      719.4µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/23 09:16:41.083 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      536.2µs| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/23 09:16:41.933 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    51.4584ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/23 09:16:42.011 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      554.5µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/23 09:16:42.011 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      553.9µs| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/23 09:16:42.058 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.9144ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:16:54.522 [E] [asm_amd64.s:1371]  测试连接失败 Post "https://ecs-cn-hangzhou.aliyuncs.com/?AccessKeyId=LTAI5tB5tMehj5K8mV4gMhJJ&Action=DescribeRegions&Format=JSON&RegionId=cn-beijing&Signature=y6%2FgGtgvlj8XJC0M0GMHaDgSp3s%3D&SignatureMethod=HMAC-SHA1&SignatureNonce=71889f644e9c208087b8f67cb093fdf4&SignatureType=&SignatureVersion=1.0&Timestamp=2021-04-23T01%3A16%3A35Z&Version=2014-05-26": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2021/04/23 09:17:18.159 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.4738ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:17:42.050 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.3237ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:18:18.161 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.3961ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:18:42.052 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.8533ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:19:18.161 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.1679ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:19:42.159 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.8683ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:20:18.163 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.9751ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:20:42.161 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.4796ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 09:21:18.165 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.5419ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*
+2021/04/23 11:15:06.766 [D] [proc.go:225]  this is a debug log
+2021/04/23 11:15:06.893 [I] [asm_amd64.s:1371]  http server Running on http://:8881
+2021/04/23 11:15:40.304 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     2.4763ms|   match|[44m GET     [0m /auth/login   r:/auth/login/*
+2021/04/23 11:15:45.363 [D] [server.go:2887]  |      127.0.0.1|[47m 302 [0m|      2.686ms|   match|[46m POST    [0m /auth/login   r:/auth/login/*
+2021/04/23 11:15:45.387 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    19.3465ms|   match|[44m GET     [0m /dashboardpage/index   r:/dashboardpage/index/*
+2021/04/23 11:15:45.503 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      526.7µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/23 11:15:45.504 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|     1.0637ms| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/23 11:15:49.718 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|    49.5037ms|   match|[44m GET     [0m /k8sservicepage/index   r:/k8sservicepage/index/*
+2021/04/23 11:15:49.802 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      649.5µs| nomatch|[44m GET     [0m /static/js/popper.min.js.map
+2021/04/23 11:15:49.802 [D] [server.go:2887]  |      127.0.0.1|[43m 404 [0m|      556.3µs| nomatch|[44m GET     [0m /static/js/bootstrap.min.js.map
+2021/04/23 11:15:49.906 [D] [server.go:2887]  |      127.0.0.1|[42m 200 [0m|     3.2817ms|   match|[44m GET     [0m /k8sservicepage/list   r:/k8sservicepage/list/*

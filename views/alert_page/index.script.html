@@ -1,0 +1,98 @@
+<script type="text/javascript">
+    jQuery(document).ready(function (){
+        var table = jQuery("#sampleTable").DataTable({
+            dom:'<"row"<"col-6" l><"col-4" f><"#buttons.col-1">>t<"row"<"col-6"i><"col-6"p>>',
+            //开启服务器模式,开启后端分页功能
+            serverSide: true,
+            ajax: {
+                url: "{{ urlfor `AlertPageController.List` }}",
+                data: function (data) {
+                    return {
+                        draw: data.draw,
+                        start : data.start,
+                        length : data.length,
+                        q : data.search.value,
+                    };
+                },
+                dataSrc: "result"
+            },
+            columns: [
+                {
+                    data: function(row){
+                        return htmlEncode(row["instance"]);
+                    }
+                },
+                {
+                    data: function(row) {
+                        return htmlEncode(row["alert_name"])
+                    }
+                },
+                {
+                    data: function(row) {
+                        return htmlEncode(row["severity"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["status"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["labels"])
+                    }
+                },
+                {
+                    data: function(row){
+                       return htmlEncode(row["summary"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["description"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["annotations"])
+                    }
+                },
+                {
+                    data: function(row){
+                        if(row["starts_at"]){
+                            return htmlEncode(jQuery.formatDateTime("yy-mm-dd hh:ii:ss",new Date(row["starts_at"])))
+                        }else{
+                            return htmlEncode(row["starts_at"])
+                        }
+                    }
+                },
+                {
+                    data: function(row){
+                        if(row["ends_at"]){
+                            return htmlEncode(jQuery.formatDateTime("yy-mm-dd hh:ii:ss",new Date(row["ends_at"])))
+                        }else{
+                            return htmlEncode(row["ends_at"])
+                        }
+                    }
+                },
+
+            ]
+        });
+
+        table.on("draw",function () {
+            if (!jQuery("#buttons").attr("initd")) {
+                jQuery("#buttons").attr("initd","initd")
+            }
+        });
+
+        window["reload_table"] = function (response) {
+            table.ajax.reload(null,false)
+        };
+
+        //每隔60秒 刷新页面
+        setInterval(function (){
+            table.ajax.reload(null,false)
+        },60*1000)
+
+    });
+</script>

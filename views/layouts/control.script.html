@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    //btn-control 用于锁定,解锁等按钮
+    jQuery(document).ready(function () {
+        jQuery(document).on("click",".btn-control",function () {
+            var url = jQuery(this).data("url")
+            var title = jQuery(this).data("title")
+            var pk = jQuery(this).data("pk")
+            var callback = jQuery(this).data("callback")
+
+            swal({
+                title: title,
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+            }, function(){
+                ajaxRequest("POST", url, {pk: pk}, function(response) {
+                    if(callback && callback in window && typeof(window[callback]) == "function") {
+                        window[callback](response);
+                    }
+                });
+            });
+        });
+    });
+</script>

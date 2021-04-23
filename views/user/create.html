@@ -1,0 +1,72 @@
+<form data-url="{{ urlfor `UserController.Create` }}" data-callback="reload_table">
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="name">用户名<span class="text-danger">*</span></label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="name" name="name" placeholder="用户名" />
+            <small id="" class="form-text text-muted">
+                用户名长度必须5~32个字符,只能由英文字母,数字,下划线和中划线组成且必须唯一
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="password">密码<span class="text-danger">*</span></label>
+        <div class="col-10">
+            <input class="form-control" type="password" id="password" name="password" placeholder="密码" />
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                密码长度需大于6位,只能由英文字母,数字,下划线和中划线组成
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="passwordVerify">确认密码<span class="text-danger">*</span></label>
+        <div class="col-10">
+            <input class="form-control" type="password" id="passwordVerify" name="passwordVerify" placeholder="再次输入密码" />
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                两次密码必须相同
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" >性别</label>
+        <div class="col-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="0" checked="checked">
+                <label class="form-check-label" for="inlineRadio1">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="1">
+                <label class="form-check-label" for="inlineRadio2">女</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="passwordVerify">出生日期</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="birthday" name="birthday" datepicker="datepicker" placeholder="出生日期">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="tel">联系方式</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="tel" name="tel" placeholder="联系方式" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="email">邮箱</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="email" name="email" placeholder="邮箱" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="address">住址</label>
+        <div class="col-10">
+            <textarea class="form-control"  id="address" name="address" row="3" placeholder="住址" ></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="remark">备注</label>
+        <div class="col-10">
+            <textarea class="form-control"  id="remark" name="remark" row="3" placeholder="备注" ></textarea>
+        </div>
+    </div>
+</form>

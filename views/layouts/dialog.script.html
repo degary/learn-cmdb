@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    jQuery(document).on("click",".btn-open-dialog",function () {
+        var title = jQuery(this).data('title');
+        var url = jQuery(this).data("url");
+        var look = jQuery(this).data("look") == "look";
+
+        jQuery(".dialog-content").load(url,function (response){
+            var dialog = jQuery(".dialog");
+            dialog.find(".dialog-title").text(title);
+            //如果在按钮中 添加了 data-look="look",则隐藏 commit按钮
+            if(look) {
+                dialog.find(".btn-dialog-commit").hide()
+            }else {
+                dialog.find(".btn-dialog-commit").show()
+            }
+            dialog.modal({
+                show:true,
+                backdrop: 'static',
+                keyboard: false,
+            })
+        });
+
+        jQuery(".btn-dialog-commit").on("click",function (){
+            var dialog = jQuery(".dialog")
+            var form = dialog.find("form");
+            var url = form.data("url")
+            var callback = form.data("callback")
+
+
+
+            //form提交的的数据
+            //console.log(url,form.serializeArray())
+            //ajaxRequest 为js/utils.js下定义的函数
+            ajaxRequest("POST",url,form.serialize(),function (response){
+                dialog.modal("hide")
+                if(callback && callback in window && typeof(window[callback] == "function")){
+                    window[callback](response);
+                }
+            });
+
+        });
+    });
+</script>
