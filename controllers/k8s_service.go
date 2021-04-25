@@ -16,13 +16,13 @@ func (c *K8sServicePageController) Index() {
 	c.LayoutSections["LayoutScript"] = "k8s_service_page/index.script.html"
 }
 
-func (c *K8sServicePageController)List()  {
+func (c *K8sServicePageController) List() {
 	draw, _ := c.GetInt("draw")
 	start, _ := c.GetInt64("start")
 	length, _ := c.GetInt("length")
 	q := strings.TrimSpace(c.GetString("q"))
 
-	result, total, queryTotal := k8s.NewServiceManager().Query(q, start, length)
+	result, total, queryTotal := k8s.NewServicePortManager().Query(q, start, length)
 	c.Data["json"] = map[string]interface{}{
 		"code":            200,
 		"text":            "获取成功",
@@ -34,6 +34,6 @@ func (c *K8sServicePageController)List()  {
 	c.ServeJSON()
 }
 
-func (c *K8sServicePageController)Create()  {
-	
+func (c *K8sServicePageController) Create() {
+
 }

@@ -19,22 +19,37 @@
             columns: [
                 {
                     data: function(row){
-                        return htmlEncode(row["name"]);
+                        return htmlEncode(row["service"]["name"]);
                     }
                 },
                 {
                     data: function(row) {
-                        return htmlEncode(row["namespace"])
+                        return htmlEncode(row["service"]["namespace"])
                     }
                 },
                 {
                     data: function(row) {
-                        return htmlEncode(row["image"])
+                        return htmlEncode(row["service"]["cluster_ip"])
                     }
                 },
                 {
                     data: function(row){
-                        return htmlEncode(row["ready_replicas"])+"/"+htmlEncode(row["replicas"])
+                        return htmlEncode(row["name"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["port"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["node_port"])
+                    }
+                },
+                {
+                    data: function(row){
+                        return htmlEncode(row["target_port"])
                     }
                 },
                 {
@@ -59,8 +74,27 @@
                     }
                 },
 
-            ]
+            ],
+            "columnDefs": [{
+                targets: [0,1,2,7,8], //第1，2，3列
+                createdCell: function (td, cellData, rowData, rowIndex, colIndex) {
+                    //var rowspan = rowData["service"]["port_number"]
+                    var rowspan = rowData["port_number"]
+                    if(rowspan > 1) {
+                        $(td).css("style","text-align:center")
+                    }
+
+
+                    if (rowspan > 1) {
+                        $(td).attr('rowspan', rowspan)
+                    }
+                    if (rowspan == 0) {
+                        $(td).remove();
+                    }
+                }
+            }]
         });
+
 
         table.on("draw",function () {
             if (!jQuery("#buttons").attr("initd")) {

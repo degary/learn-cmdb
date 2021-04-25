@@ -128,13 +128,12 @@ func main() {
 					deploy.Sync(deployment)
 				}
 
-				services,err := client.Services()
-				if err != nil{
+				services, err := client.Services()
+				if err != nil {
 					fmt.Println(err)
 					return
 				}
-				for _,service := range services{
-					fmt.Println("aaa")
+				for _, service := range services {
 					svc.Sync(service)
 				}
 			}
