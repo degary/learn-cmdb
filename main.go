@@ -118,7 +118,7 @@ func main() {
 			deploy := k8s.NewDeploymentManager()
 			svc := k8s.NewServiceManager()
 			client := k8sservice.NewClient("conf/config")
-			for range time.Tick(5 * time.Second) {
+			for now := range time.Tick(5 * time.Second) {
 				deployments, err := client.Deployments()
 				if err != nil {
 					fmt.Println(err)
@@ -126,6 +126,7 @@ func main() {
 				}
 				for _, deployment := range deployments {
 					deploy.Sync(deployment)
+					deploy.SyncDeployStatus(now, deployment.Namespace)
 				}
 
 				services, err := client.Services()

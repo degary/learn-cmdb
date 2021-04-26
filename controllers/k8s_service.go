@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/degary/learn-cmdb/controllers/auth"
 	"github.com/degary/learn-cmdb/models/k8s"
 	"strings"
 )
@@ -34,6 +35,10 @@ func (c *K8sServicePageController) List() {
 	c.ServeJSON()
 }
 
-func (c *K8sServicePageController) Create() {
+type K8sServiceController struct {
+	auth.LoginRequiredController
+}
+
+func (c *K8sServiceController) Create() {
 
 }

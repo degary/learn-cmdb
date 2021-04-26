@@ -1,0 +1,30 @@
+<form data-url="{{ urlfor `K8sDeployController.Modify` }}" data-callback="reload_table">
+    <input type="hidden" name="id" value="{{ .object.Id }}" />
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="name">用户名<span class="text-danger">*</span></label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="name" name="name" placeholder="用户名" value="{{ .object.Name }}" />
+            <small id="" class="form-text text-muted">
+                用户名长度必须5~32个字符,只能由英文字母,数字,下划线和中划线组成且必须唯一
+            </small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="passwordVerify">namespace</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="namespace" name="namespace" datepicker="datepicker" placeholder="namespace" value="{{.object.Namespace}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="tel">image</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="image" name="image" placeholder="image" value="{{ .object.Image }}"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="email">副本数</label>
+        <div class="col-10">
+            <input class="form-control" type="text" id="replicas" name="replicas" placeholder="副本数" value="{{ .object.Replicas }}"/>
+        </div>
+    </div>
+</form>

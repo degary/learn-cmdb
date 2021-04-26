@@ -64,10 +64,27 @@ func (c *DeploymentManager) Sync(deploy *appsv1.Deployment) error {
 	return err
 }
 
+func (c *DeploymentManager) GetById(id int) (*DeploymentModels, error) {
+	ormer := orm.NewOrm()
+	deploy := DeploymentModels{Id: id}
+	err := ormer.Read(&deploy)
+	if err != nil {
+		return nil, err
+	}
+	return &deploy, nil
+}
+
+func (c *DeploymentManager) SyncDeployStatus(t time.Time, namespace string) {
+	ormer := orm.NewOrm()
+	//由于updatedtime字段 是 auto_now类型,在操作时,会自动更新此字段,所以 通过比较 updatetime字段的值比当前时间小 来判断此服务器是否被删除
+	ormer.QueryTable(&DeploymentModels{}).Filter("Namespace__exact", namespace).Filter("DeletedTime__isnull", true).Filter("UpdatedTime__lt", t).Update(orm.Params{"DeletedTime": t})
+	ormer.QueryTable(&DeploymentModels{}).Filter("Namespace__exact", namespace).Filter("DeletedTime__isnull", false).Filter("UpdatedTime__gte", t).Update(orm.Params{"DeletedTime": nil})
+}
+
 func NewDeploymentManager() *DeploymentManager {
 	return &DeploymentManager{}
 }
 
 func init() {
-	orm.RegisterModel(&DeploymentModels{},&ServiceModels{},&ServicePort{})
+	orm.RegisterModel(&DeploymentModels{}, &ServiceModels{}, &ServicePort{})
 }

@@ -29,6 +29,8 @@ func init() {
 	//k8s平台
 	beego.AutoRouter(&controllers.K8sDeployPageController{})
 	beego.AutoRouter(&controllers.K8sServicePageController{})
+	beego.AutoRouter(&controllers.K8sDeployController{})
+	beego.AutoRouter(&controllers.K8sServiceController{})
 
 	//home
 	beego.AutoRouter(&controllers.DashboardPageController{})
