@@ -53,8 +53,6 @@ func (c *ServiceManager) Query(q string, start int64, length int) ([]*ServiceMod
 	if q != "" {
 		query := orm.NewCondition()
 		query = query.Or("name__icontains", q)
-		query = query.Or("namespace__icontains", q)
-		query = query.Or("selector__icontains", q)
 		condition = condition.AndCond(query)
 
 		qtotal, _ = qs.SetCond(condition).Count()
@@ -111,6 +109,18 @@ func (c *ServiceManager) Sync(svc *corev1.Service) error {
 	return nil
 }
 
+func (c *ServiceManager) SyncServiceStatus(t time.Time, ns string) {
+	ormer := orm.NewOrm()
+	ormer.QueryTable(&ServiceModels{}).Filter("Namespace__exact", ns).Filter("UpdatedTime__lt", t).Update(orm.Params{"DeletedTime": t})
+	ormer.QueryTable(&ServiceModels{}).Filter("Namespace__exact", ns).Filter("UpdatedTime__gte", t).Update(orm.Params{"DeletedTime": nil})
+}
+
+func (c *ServiceManager) SyncServicePortStatus(t time.Time, service *ServiceModels) {
+	ormer := orm.NewOrm()
+	ormer.QueryTable(&ServicePort{}).Filter("Service__exact", service).Filter("UpdatedTime__lt", t).Update(orm.Params{"DeletedTime": t})
+	ormer.QueryTable(&ServicePort{}).Filter("Service__exact", service).Filter("UpdatedTime__gte", t).Update(orm.Params{"DeletedTime": nil})
+}
+
 type ServicePortManager struct{}
 
 func (c *ServicePortManager) Query(q string, start int64, length int) ([]*ServicePort, int64, int64) {
@@ -126,8 +136,6 @@ func (c *ServicePortManager) Query(q string, start int64, length int) ([]*Servic
 	if q != "" {
 		query := orm.NewCondition()
 		query = query.Or("name__icontains", q)
-		query = query.Or("namespace__icontains", q)
-		query = query.Or("selector__icontains", q)
 		condition = condition.AndCond(query)
 
 		qtotal, _ = qs.SetCond(condition).Count()

@@ -124,6 +124,7 @@ func main() {
 					fmt.Println(err)
 					return
 				}
+				//同步deploy信息
 				for _, deployment := range deployments {
 					deploy.Sync(deployment)
 					deploy.SyncDeployStatus(now, deployment.Namespace)
@@ -134,8 +135,17 @@ func main() {
 					fmt.Println(err)
 					return
 				}
+				//同步service信息
 				for _, service := range services {
 					svc.Sync(service)
+					//fmt.Printf("%#v\n",svcMo)
+					svc.SyncServiceStatus(now, service.Namespace)
+				}
+				//同步servicePort信息
+				svcs := []*k8s.ServiceModels{}
+				orm.NewOrm().QueryTable(&k8s.ServiceModels{}).Filter("DeletedTime__isnull", false).All(&svcs)
+				for _, svcMol := range svcs {
+					svc.SyncServicePortStatus(now, svcMol)
 				}
 			}
 		}()
