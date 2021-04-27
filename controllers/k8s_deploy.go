@@ -1,8 +1,16 @@
 package controllers
 
 import (
+	"context"
+	"fmt"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/validation"
 	"github.com/degary/learn-cmdb/controllers/auth"
+	"github.com/degary/learn-cmdb/forms"
 	"github.com/degary/learn-cmdb/models/k8s"
+	k8svc "github.com/degary/learn-cmdb/services/k8s"
+	"github.com/degary/learn-cmdb/utils"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"strings"
 )
 
@@ -68,8 +76,62 @@ func (c *K8sDeployController) Delete() {
 }
 
 func (c *K8sDeployController) Modify() {
+	//如果是post请求
 	if c.Ctx.Input.IsPost() {
-
+		valid := &validation.Validation{}
+		form := &forms.K8s_deploy_form{}
+		json := map[string]interface{}{
+			"code":   400,
+			"text":   "提交数据错误",
+			"result": nil,
+		}
+		//如果解析form失败
+		if err := c.ParseForm(form); err != nil {
+			valid.SetError("error", err.Error())
+			json["result"] = valid.Errors
+			//如果解析form成功
+		} else {
+			//如果验证失败
+			if ok, err := valid.Valid(form); err != nil {
+				fmt.Println("验证失败")
+				valid.SetError("error", err.Error())
+				json["result"] = valid.Errors
+				//如果验证成功
+			} else if ok {
+				/*
+					验证成功后,开始操作数据 更改deployment参数
+				*/
+				k8sCli := k8svc.NewClient(beego.AppConfig.String("k8sconfig"))
+				deployCli, deploy, err := k8sCli.GetDeployment(form.Name, form.Namespace)
+				if err != nil {
+					json = map[string]interface{}{
+						"code":   400,
+						"text":   "deploy失败",
+						"result": err.Error(),
+					}
+				} else {
+					deploy.Spec.Replicas = utils.Int32ToPtr(form.Replicas)
+					deploy.Namespace = form.Namespace
+					deploy.Name = form.Name
+					deploy.Spec.Template.Spec.Containers[0].Image = form.Image
+					deployCli.Update(context.TODO(), deploy, metav1.UpdateOptions{})
+					json = map[string]interface{}{
+						"code":   200,
+						"text":   "创建成功",
+						"result": form,
+					}
+				}
+			} else if !ok {
+				json = map[string]interface{}{
+					"code":   400,
+					"text":   "参数验证失败",
+					"result": valid.Errors,
+				}
+			}
+		}
+		c.Data["json"] = json
+		c.ServeJSON()
+		//如果是get请求
 	} else {
 		pk, _ := c.GetInt("pk")
 		deploy, _ := k8s.NewDeploymentManager().GetById(pk)

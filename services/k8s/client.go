@@ -7,6 +7,8 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/kubernetes/typed/apps/v1"
+	typecorev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
@@ -47,6 +49,15 @@ func (c *Client) Namespaces() ([]corev1.Namespace, error) {
 	return namespaces, nil
 }
 
+func (c *Client) NamespacesNameList() []string {
+	nsList := []string{}
+	nses, _ := c.Namespaces()
+	for _, ns := range nses {
+		nsList = append(nsList, ns.Name)
+	}
+	return nsList
+}
+
 func (c *Client) Services() ([]*corev1.Service, error) {
 	services := []*corev1.Service{}
 	namespaces, err := c.Namespaces()
@@ -61,13 +72,25 @@ func (c *Client) Services() ([]*corev1.Service, error) {
 			fmt.Println(err)
 			return nil, err
 		}
-		for _,sv := range serviceList.Items{
+		for _, sv := range serviceList.Items {
 			var svPtr corev1.Service
 			svPtr = sv
-			services = append(services,&svPtr)
+			services = append(services, &svPtr)
 		}
 	}
 	return services, nil
+}
+
+func (c *Client) GetDeployment(name, namespace string) (v1.DeploymentInterface, *appsv1.Deployment, error) {
+	depInt := c.Cli.AppsV1().Deployments(namespace)
+	deploy, err := depInt.Get(context.TODO(), name, metav1.GetOptions{})
+	return depInt, deploy, err
+}
+
+func (c *Client) GetService(name, namespace string) (typecorev1.ServiceInterface, *corev1.Service, error) {
+	svcInt := c.Cli.CoreV1().Services(namespace)
+	svc, err := svcInt.Get(context.TODO(), name, metav1.GetOptions{})
+	return svcInt, svc, err
 }
 
 func NewClient(configPath string) *Client {
